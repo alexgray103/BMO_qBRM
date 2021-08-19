@@ -1,5 +1,11 @@
-function varargout = BaSIC_correction(images_dir, plot_val)
-
+function BaSIC_correction(images_dir, plot_val)
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   %%%% images_dir = location of folder with all images that need to be corrected
+   %%%%%% plot_val = logical value to say whether to plot darkfield and flatfield
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   
+  
+  
     % read in Image set and do correction and overwrite all images
     files =dir([images_dir '*.tif']);
     for i = 1:length(files)  
@@ -26,7 +32,8 @@ function varargout = BaSIC_correction(images_dir, plot_val)
     end
 
     % save images for stitching
+    file_location = [images_dir '\corrected']; 
     for i = 1:length(files)
-        imwrite(uint8(IF_corr(:,:,i)),sprintf('%s%03d',file_location, i));
+        imwrite(uint8(IF_corr(:,:,i)),sprintf('%simg_%03d',file_location, i));
     end
 end 
